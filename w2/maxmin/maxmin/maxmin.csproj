@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A78B48B-47CB-438A-82AC-E19BFAFCA886}</ProjectGuid>
+    <ProjectGuid>{8E19E62E-EED4-491A-8A3D-62E1CD9CB945}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Project1</RootNamespace>
-    <AssemblyName>Project1</AssemblyName>
+    <RootNamespace>maxmin</RootNamespace>
+    <AssemblyName>maxmin</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\w1\ProjectPrimenumber_1.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
