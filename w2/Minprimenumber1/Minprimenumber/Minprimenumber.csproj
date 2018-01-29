@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7D75FA6B-567D-4640-B197-7FF48CE14EBA}</ProjectGuid>
+    <ProjectGuid>{2BCA6782-EF34-4990-8D65-B9267A4289AA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>complex2</RootNamespace>
-    <AssemblyName>complex2</AssemblyName>
+    <RootNamespace>Minprimenumber</RootNamespace>
+    <AssemblyName>Minprimenumber</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
