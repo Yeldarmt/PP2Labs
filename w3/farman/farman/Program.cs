@@ -43,7 +43,7 @@ namespace W3G1_Example3
             ShowDirectoryInfo(directoryInfo, cursor);
 
             while (true)
-            {
+            { 
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
                 if (keyInfo.Key == ConsoleKey.DownArrow)
                 {
