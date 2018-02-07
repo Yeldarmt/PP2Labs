@@ -17,10 +17,7 @@ namespace complex_number
 
         }
 
-        public override string ToString()
-        {
-            return a + "/" + b;
-        }
+       
 
         public Complex Add(Complex complex2)
         {
@@ -62,6 +59,10 @@ namespace complex_number
             int nod = _a + _b;
             a /= nod;
             b /= nod;
+        }
+        public override string ToString()
+        {
+            return a + "/" + b;
         }
     }
 
