@@ -44,7 +44,7 @@ namespace Circle
             Console.WriteLine("Radius:");
             double r = double.Parse(Console.ReadLine());
             circle c = new circle(r);
-            Console.WriteLine(c);
+            Console.WriteLine();
 
             Console.ReadKey();
 
