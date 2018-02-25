@@ -30,14 +30,13 @@ namespace Project_classstudent
         static void Main(string[] args)
         {
             Student s = new Student();
-            s.name = "FIT";
-            s.age = 20;
+            //s.name = "FIT";
+            //s.age = 20;
             Console.WriteLine(s);
-
+            
             Student s2 = new Student("asdf", 19, 3);
             Console.WriteLine(s2);
             Console.ReadKey();
         }
-
     }
 }

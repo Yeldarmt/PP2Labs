@@ -13,6 +13,7 @@ namespace Mcircle
         public double d;
         public double l;
 
+
         public Circle()
         {
             r = 5;
@@ -41,6 +42,10 @@ namespace Mcircle
         {
             l = 2 * Math.PI * r;
         }
+       /* public double F(double al)
+        {
+            return al / 360 * s;
+        }*/
         public override string ToString()
         {
             return "Area = " + s + "\nDiametr = " + d + "\nCircumference = " + l;

@@ -16,9 +16,6 @@ namespace complex_number
             b = _b;
 
         }
-
-       
-
         public Complex Add(Complex complex2)
         {
             Complex result = new Complex(this.a * complex2.b + complex2.a * this.b, this.b * complex2.b);
@@ -49,12 +46,16 @@ namespace complex_number
         {
             int _a = this.a;
             int _b = this.b;
-            while (_a > 0 && _b > 0)
+            while(_a>0 && _b > 0)
             {
-                if (_a > _b)
-                    _a = _a % _b;
+                if (_a > 0)
+                {
+                    _a %= _b;
+                }
                 else
-                    _b = _b % _a;
+                {
+                    _b %= _a;
+                }
             }
             int nod = _a + _b;
             a /= nod;
