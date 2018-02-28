@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Snake
-{
+{[Serializable]
     class Point
     {
         public int x;

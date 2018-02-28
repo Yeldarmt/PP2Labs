@@ -11,20 +11,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Snake
 {
     [Serializable]
-
     class Program
     {
 
         static int direction = 1;
         static int level = 1;
         static Snake snake = new Snake();
-        static Snake snake2 = new Snake();
         static Wall wall = new Wall(level);
         static Random rdm = new Random();
         static int t = rdm.Next(0, 54);
         static int s = rdm.Next(0, 24);
         static int score = 0;
-        static int score2 = 0;
         static int speed = 300;
         static int record = 0;
 
@@ -42,7 +39,7 @@ namespace Snake
                     //s = rdm.Next(0, 24);
 
                     CreateFood();
-                    if (score % 4 == 0)
+                    if (score % 3 == 0)
                     {
                         level++;
                         Console.Clear();
@@ -119,107 +116,16 @@ namespace Snake
                 }
             }
         }
-        public static void func1()
-        {
-            while (true)
-            {
-
-                if ((t == snake2.body[0].x && s == snake2.body[0].y))
-                {
-                    snake2.body.Add(new Point(t, s));
-                    score2++;
-                    speed = Math.Max(50, speed - 25);
-                    // t = rdm.Next(0, 54);
-                    //s = rdm.Next(0, 24);
-
-                    CreateFood2();
-                    if (score2 % 4 == 0)
-                    {
-                        level++;
-                        Console.Clear();
-                        for (int i = 0; i < snake2.body.Count; ++i)
-                        {
-                            snake2.body[i].x = i + 10;
-                            snake2.body[i].y = 15;
-                        }
-                        wall = new Wall(level);
-                    }
-                }
-                if (direction == 7)
-                {
-                    snake.Move(0, -1);
-                }
-                if (direction == 9)
-                {
-                    snake.Move(0, 1);
-                }
-                if (direction == 1)
-                {
-                    snake.Move(1, 0);
-                }
-                if (direction == 3)
-                {
-                    snake.Move(-1, 0);
-                }
-                if (snake2.ColllisionWithWall(wall) || snake2.Collision())
-                {
-                    Console.Clear();
-                    Console.SetCursorPosition(20, 10);
-                    Console.WriteLine("GAME OVER!!!");
-                    speed = 300;
-                    F1(record);
-                    score2 = 0;
-                    Console.ReadKey();
-                    Console.Clear();
-                    snake2 = new Snake();
-                    level = 1;
-                    wall = new Wall(level);
-                }
-
-                Console.SetCursorPosition(t, s);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Q");
-                snake2.Draw();
-                wall.Draw();
-                Thread.Sleep(speed);
-
-            }
-        }
-        static void CreateFood2()
-        {
-            while (true)
-            {
-
-                int k = 0;
-                rdm = new Random();
-                t = rdm.Next(0, 54);
-                s = rdm.Next(0, 24);
-                for (int i = 0; i < wall.body.Count; ++i)
-                {
-                    for (int j = 0; j < snake2.body.Count; ++j)
-                    {
-                        if ((snake2.body[j].x == t && snake2.body[j].y == s) || (wall.body[i].x == t && wall.body[i].y == s))
-                            k = 1;
-                    }
-                }
-                if (k == 0)
-                {
-                    Console.SetCursorPosition(t, s);
-                    Console.WriteLine("Q");
-                    break;
-                }
-            }
-        }
-
+        
         static void F1(int record)
         {
-            StreamWriter sr = new StreamWriter(@"C: \Users\User\Desktop\PP2Labs\w2\Snake\Snake\bin\Debug\record.txt");
+            StreamWriter sr = new StreamWriter(@"C:\Users\User\Desktop\PP2Labs\Snake\Snake\bin\Debug\record.txt");
             sr.WriteLine(record);
             sr.Close();
         }
         static int F2()
         {
-            StreamReader sr = new StreamReader(@"C: \Users\User\Desktop\PP2Labs\w2\Snake\Snake\bin\Debug\record.txt");
+            StreamReader sr = new StreamReader(@"C:\Users\User\Desktop\PP2Labs\Snake\Snake\bin\Debug\record.txt");
             string line = sr.ReadLine();
             int n;
             sr.Close();
@@ -232,20 +138,20 @@ namespace Snake
             FileStream fs = new FileStream("data2.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             bf.Serialize(fs, snake);
             fs.Close();
-
+            
         }
         static Snake F4()
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = new FileStream("data2.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            Snake snake = bf.Deserialize(fs) as Snake;
+            Snake snake=bf.Deserialize(fs) as Snake;
             fs.Close();
             return snake;
 
         }
         static void Main(string[] args)
         {
-            record = F2();
+            record=F2();
             Console.CursorVisible = false;
             Console.SetWindowSize(60, 30);
 
@@ -257,16 +163,14 @@ namespace Snake
             Console.Clear();
             Console.WriteLine("If you want to continue type 2");
             ConsoleKeyInfo ki = Console.ReadKey();
-            Console.Clear();
+                Console.Clear();        
             if (ki.Key == ConsoleKey.NumPad2)
             {
-                snake = F4();
+                  snake=F4();
             }
 
             Thread thread = new Thread(func);
             thread.Start();
-            Thread thread2 = new Thread(func1);
-            thread2.Start();
 
             Console.SetCursorPosition(t, s);
             Console.ForegroundColor = ConsoleColor.Red;
@@ -274,10 +178,10 @@ namespace Snake
 
             while (true)
             {
-                Console.SetCursorPosition(1, 27);
+                Console.SetCursorPosition( 1,27);
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine(name);
-                Console.SetCursorPosition(name.Length + 2, 27);
+                Console.SetCursorPosition(name.Length+2,27);
                 record = Math.Max(record, score);
                 Console.WriteLine("Score : " + score);
                 Console.WriteLine("Record: " + record);
@@ -291,19 +195,11 @@ namespace Snake
                     direction = 6;
                 if (k.Key == ConsoleKey.LeftArrow && direction != 6)
                     direction = 4;
-                if (k.Key == ConsoleKey.I && direction != 9)
-                    direction = 7;
-                if (k.Key == ConsoleKey.K && direction != 7)
-                    direction = 9;
-                if (k.Key == ConsoleKey.L && direction != 3)
-                    direction = 1;
-                if (k.Key == ConsoleKey.J && direction != 1)
-                    direction = 3;
                 if (k.Key == ConsoleKey.S)
                 {
                     F3(snake);
                 }
-            }
+            }      
         }
     }
 }

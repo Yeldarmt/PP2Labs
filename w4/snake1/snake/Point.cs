@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace snake
+namespace Snake
 {
+    [Serializable]
     class Point
     {
-        public int x, y;
+        public int x;
+        public int y;
         public Point(int _x, int _y)
         {
-            x = _x;
-            y = _y;
+            this.x = _x;
+            this.y = _y;
         }
     }
 }

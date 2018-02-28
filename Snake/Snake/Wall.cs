@@ -7,6 +7,8 @@ using System.IO;
 
 namespace Snake
 {
+    [Serializable]
+
     class Wall
     {
         public List<Point> body;

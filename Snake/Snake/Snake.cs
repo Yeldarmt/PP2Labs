@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Snake
-{
+{[Serializable]
     class Snake
     {
        public List<Point> body;
@@ -56,6 +56,7 @@ namespace Snake
         public void Draw()
         {
             int index = 0;
+
             foreach(Point p in body)
             {
                 if (index == 0)
@@ -93,7 +94,7 @@ namespace Snake
             }
             return false;
         }
-        public bool Collisionwall(Wall w, int t , int s)
+        /*public bool Collisionwall(Wall w, int t , int s)
         {
             foreach(Point p in w.body)
             {
@@ -114,6 +115,6 @@ namespace Snake
                 }
             }
             return false;
-        }
+        }*/
     }
 }
