@@ -22,7 +22,7 @@ namespace Snake
         static int t = rdm.Next(0, 54);
         static int s = rdm.Next(0, 24);
         static int score = 0;
-        static int speed = 300;
+        static int speed = 200;
         static int record = 0;
 
         public static void func()
@@ -147,7 +147,21 @@ namespace Snake
             Snake snake=bf.Deserialize(fs) as Snake;
             fs.Close();
             return snake;
-
+        }
+        static void F5(Wall wall)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream("asdf.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            bf.Serialize(fs, wall);
+            fs.Close();
+        }
+        static Wall F6()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream("asdf.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            Wall wall = bf.Deserialize(fs) as Wall;
+            fs.Close();
+            return wall;
         }
         static void Main(string[] args)
         {
@@ -167,6 +181,7 @@ namespace Snake
             if (ki.Key == ConsoleKey.NumPad2)
             {
                   snake=F4();
+                wall = F6();
             }
 
             Thread thread = new Thread(func);
@@ -198,7 +213,9 @@ namespace Snake
                 if (k.Key == ConsoleKey.S)
                 {
                     F3(snake);
+                    F5(wall);
                 }
+                
             }      
         }
     }

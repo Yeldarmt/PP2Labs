@@ -96,27 +96,5 @@ namespace Snake
             }
             return false;
         }
-        /*public bool Collisionwall(Wall w, int t , int s)
-        {
-            foreach(Point p in w.body)
-            {
-                if(t==p.x && s == p.y)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public bool CollisionWithSnake(int t, int s)
-        {
-            foreach(Point p in body)
-            {
-                if(t==p.x && s == p.y)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }*/
     }
 }
