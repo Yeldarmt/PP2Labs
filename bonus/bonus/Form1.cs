@@ -92,7 +92,7 @@ namespace bonus
                     int a = body[i].Location.Y;
                     int b = body[i].Location.X;
                     a++;
-                    if (a <= Height-45)
+                    if (a <= Height-55)
                     {
                         body[i].Location = new Point(b, a);
                     }
