@@ -17,6 +17,7 @@ namespace Calculator
         double result = 0;
         string operation = "";
         double memory = 0;
+        int t = 0;
         public Form1()
         {
             InitializeComponent();
@@ -29,26 +30,26 @@ namespace Calculator
             if (u == 1)
             {
                 display.Text = btn.Text;
+                label1.Text = btn.Text;
             }
             else
             {
                 display.Text += btn.Text;
             }
-
-            label1.Text += btn.Text;
         }
 
         private void operation_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             double a = double.Parse(display.Text);
-            if (operation != "")
+
+            if (operation != "") 
             {
                 if (operation == "x")
                 {
                     firstNumber = firstNumber * a;
                 }
-                if (operation == "/")
+                if (operation == "÷")
                 {
                     firstNumber = firstNumber / a;
                 }
@@ -61,54 +62,46 @@ namespace Calculator
                     firstNumber = firstNumber - a;
                 }
             }
-            else
+            if (operation == "")
             {
                 firstNumber = a;
                 label1.Text = firstNumber.ToString();
             }
-            if (operation == "y√x")
+            if (btn.Text == "y√x" || btn.Text == "x^y")
             {
-                label1.Text = firstNumber.ToString() + " " + "yroot" + " ";
-            }
-            if (operation == "x^y")
-            {
-                label1.Text = label1.Text + "^";
+                if (btn.Text == "y√x")
+                    label1.Text += " yroot ";
+                if (btn.Text == "x^y")
+                    label1.Text += " ^ ";
             }
             else
-            {
-                label1.Text += btn.Text;
-            }
+            label1.Text = firstNumber.ToString() + btn.Text;
             operation = btn.Text;
             display.Text = 0 + "";
             u = 0;
-
         }
 
         private void result_Click(object sender, EventArgs e)
         {
+            secondNumber = double.Parse(display.Text);
             if (operation == "x")
             {
-                secondNumber = double.Parse(display.Text);
                 result = firstNumber * secondNumber;
             }
             if (operation == "÷")
             {
-                secondNumber = double.Parse(display.Text);
                 result = firstNumber / secondNumber;
             }
             if (operation == "+")
             {
-                secondNumber = double.Parse(display.Text);
                 result = firstNumber + secondNumber;
             }
             if (operation == "-")
             {
-                secondNumber = double.Parse(display.Text);
                 result = firstNumber - secondNumber;
             }
             if (operation == "mod")
             {
-                secondNumber = double.Parse(display.Text);
                 double s = firstNumber / secondNumber;
                 double t = firstNumber - (Convert.ToInt32(s)) * secondNumber;
                 if (t >= 0)
@@ -123,7 +116,6 @@ namespace Calculator
 
             if (operation == "x^y")
             {
-                secondNumber = double.Parse(display.Text);
                 double t = 1;
                 for (int i = 0; i < secondNumber; i++)
                 {
@@ -133,19 +125,16 @@ namespace Calculator
             }
             if (operation == "y√x")
             {
-                secondNumber = double.Parse(display.Text);
                 result = Math.Pow(firstNumber, 1 / secondNumber);
             }
 
             if (operation == "%")
             {
-                secondNumber = double.Parse(display.Text);
                 result = firstNumber * secondNumber / 100;
             }
             display.Text = result.ToString();
             label1.Text = "";
             u = 0;
-
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -177,33 +166,35 @@ namespace Calculator
 
         private void button7_Click(object sender, EventArgs e)
         {
-            string s = "";
-            for (int i = 0; i < display.Text.Length - 1; i++)
+            if (!label1.Text.Contains("sin") && !label1.Text.Contains("cos") && !label1.Text.Contains("tan") && !label1.Text.Contains("fact") && !label1.Text.Contains("mod") && !label1.Text.Contains("sqr"))
             {
-                s = s + display.Text[i];
+
+                string s = "";
+                for (int i = 0; i < display.Text.Length - 1; i++)
+                {
+                    s = s + display.Text[i];
+                }
+                if (s != "")
+                {
+                    display.Text = s;
+                    label1.Text = s;
+                }
+                else
+                {
+                    display.Text = 0 + "";
+                    label1.Text = "";
+                }
+                u = 0;
             }
-            if (s != "")
-            {
-                display.Text = s;
-                label1.Text = s;
-            }
-            else
-            {
-                display.Text = 0 + "";
-                label1.Text = "";
-            }
-            u = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             display.Text = Math.E.ToString();
-            label1.Text += display.Text;
         }
         private void button1_Click(object sender, EventArgs e)
         {
             display.Text = Math.PI.ToString();
-            label1.Text += display.Text;
         }
 
         private void Form1_Load_Click(object sender, EventArgs e)
@@ -214,7 +205,7 @@ namespace Calculator
         private void Ms_Click(object sender, EventArgs e)
         {
             memory = double.Parse(display.Text);
-            display.Text = "";
+            display.Text = 0 + "";
         }
 
         private void memory_read(object sender, EventArgs e)
@@ -263,8 +254,20 @@ namespace Calculator
             }
             if (operation == "+/-")
             {
-                label1.Text = "+/-" + firstNumber.ToString();
-                result = 0 - firstNumber;
+                if (firstNumber > 0)
+                {
+                    label1.Text = "-" + firstNumber.ToString();
+                }
+                if (firstNumber == 0)
+                {
+
+                }
+                else
+                {
+                    label1.Text = ((-1)*firstNumber).ToString();
+                }
+                firstNumber =  (-1)*firstNumber;
+                result = firstNumber;
             }
             if (operation == "x!")
             {
@@ -343,7 +346,6 @@ namespace Calculator
             {
                 display.Text += ",";
             }
-                label1.Text += bttn.Text;
         }
     }
 }
